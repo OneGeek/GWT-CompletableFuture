@@ -1,42 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ekotrope</groupId>
-  <artifactId>gwt-completablefuture</artifactId>
-  <version>1.0.0</version>
-  <description>GWT 2.8.0 Compatible implementation of java.util.concurrent.CompletableFuture and supporting classes</description>
+    <groupId>com.ekotrope</groupId>
+    <artifactId>gwt-completablefuture</artifactId>
+    <version>1.0.0</version>
+    <name>GWT-CompletableFuture</name>
+    <description>GWT 2.8.0 Compatible implementation of java.util.concurrent.CompletableFuture and supporting classes</description>
+    <url>https://github.com/OneGeek/GWT-CompletableFuture</url>
 
-  <build>
+    <issueManagement>
+        <url>https://github.com/OneGeek/GWT-CompletableFuture/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
 
-    <resources>
+    <scm>
+        <url>https://github.com/OneGeek/GWT-CompletableFuture</url>
+        <connection>scm:git:git://github.com/OneGeek/GWT-CompletableFuture.git</connection>
+        <developerConnection>scm:git:git@github.com:OneGeek/GWT-CompletableFuture.git</developerConnection>
+    </scm>
 
-      <resource>
-        <directory>src/main/super</directory>
-      </resource>
+    <organization>
+        <name>Ekotrope</name>
+        <url>http://www.ekotrope.com</url>
+    </organization>
 
-      <resource>
-        <directory>src/main/java</directory>
-      </resource>
+    <developers>
+        <developer>
+            <id>ben</id>
+            <name>Benjamin DeLillo</name>
+            <email>ben@ekotrope.com</email>
+            <timezone>America/New_York</timezone>
+        </developer>
+    </developers>
 
-    </resources>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
 
-    <plugins>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
-      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <executions>
-              <execution>
-                  <id>default-compile</id>
-                  <phase>none</phase>
-              </execution>
-          </executions>
-      </plugin>
+    <build>
 
-    </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/super</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+            </resource>
+        </resources>
 
-  </build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>  
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
 </project>

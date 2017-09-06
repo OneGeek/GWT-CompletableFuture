@@ -2,9 +2,9 @@
 GWT 2.8.0 compatible implementation of java.util.concurrent.CompletableFuture and supporting classes. The implementation is compatible with Java 8 lambdas.
 (The preceding line was really included to help those looking for such via a seach engine)
 
-This merely packages [this commit](https://github.com/nordligulv/gwt/commit/8b175153216b527e735a07feda4cb5d822caa7c8) by @nordligulv into a module consumable by GWT.
+This merely packages commit [nordligulv/gwt@8b17515](https://github.com/nordligulv/gwt/commit/8b175153216b527e735a07feda4cb5d822caa7c8) into a standalone library for GWT.
 
-If/When GWT includes CompletableFuture emulation itself, this module will be obsolete.
+If/When GWT includes CompletableFuture emulation itself, this library will be obsolete.
 
 ## Usage
 
@@ -12,7 +12,7 @@ If/When GWT includes CompletableFuture emulation itself, this module will be obs
 
 Include the following in the `<dependencies>` section of your `pom.xml` file.
 
-```
+```xml
 <dependency>
     <groupId>com.ekotrope.gwt</groupId>
     <artifactId>gwt-completablefuture</artifactId>
@@ -24,5 +24,7 @@ Include the following in the `<dependencies>` section of your `pom.xml` file.
 
 Include the following in your `*.gwt.xml` GWT module descriptor file.
 
-`<inherits name='com.ekotrope.gwt.CompletableFuture'/>`
+```xml
+<inherits name='com.ekotrope.gwt.CompletableFuture'/>
+```
 

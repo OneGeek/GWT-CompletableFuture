@@ -14,9 +14,9 @@ Include the following in the `<dependencies>` section of your `pom.xml` file.
 
 ```xml
 <dependency>
-    <groupId>com.ekotrope.gwt</groupId>
+    <groupId>com.ekotrope</groupId>
     <artifactId>gwt-completablefuture</artifactId>
-    <version>TODO</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 

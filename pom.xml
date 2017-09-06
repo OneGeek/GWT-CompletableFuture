@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.ekotrope.gwt</groupId>
+  <artifactId>gwt-completablefuture</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <description>GWT Compatible implementation of java.util.concurrent.CompletableFuture and supporting classes</description>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/super</directory>
+      </resource>
+      <resource>
+        <directory>src/main/java</directory>
+      </resource>
+    </resources>
+    <plugins>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <version>2.8.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <executions>
+              <execution>
+                  <id>default-compile</id>
+                  <phase>none</phase>
+              </execution>
+          </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+  <dependencies>
+      <!--
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    -->
+  </dependencies>
+
+</project>

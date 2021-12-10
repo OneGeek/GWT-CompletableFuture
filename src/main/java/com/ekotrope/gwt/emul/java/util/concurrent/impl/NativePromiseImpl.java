@@ -21,20 +21,20 @@ import java.util.function.Consumer;
 /**
  *
  */
-final class NativePromiseImpl<V> implements java.util.concurrent.impl.Promise<V> {
+final class NativePromiseImpl<V> implements Promise<V> {
 
-  final java.util.concurrent.impl.JsPromise jsPromise;
-  private java.util.concurrent.impl.JsPromise.Resolver resolver;
-  private java.util.concurrent.impl.JsPromise.Rejector rejector;
+  final JsPromise jsPromise;
+  private JsPromise.Resolver resolver;
+  private JsPromise.Rejector rejector;
 
   NativePromiseImpl() {
-    jsPromise = new java.util.concurrent.impl.JsPromise((resolve, reject) -> {
+    jsPromise = new JsPromise((resolve, reject) -> {
       resolver = resolve;
       rejector = reject;
     });
   }
 
-  NativePromiseImpl(java.util.concurrent.impl.JsPromise promise) {
+  NativePromiseImpl(JsPromise promise) {
     assert promise != null;
     this.jsPromise = promise;
   }
@@ -62,7 +62,7 @@ final class NativePromiseImpl<V> implements java.util.concurrent.impl.Promise<V>
   @Override
   public void then(Runnable callback) {
     assert callback != null;
-    java.util.concurrent.impl.JsPromise.OnSettledCallback func = value -> callback.run();
+    JsPromise.OnSettledCallback func = value -> callback.run();
     jsPromise.then(func, func);
   }
 

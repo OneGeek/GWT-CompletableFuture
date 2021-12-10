@@ -22,11 +22,12 @@ import jsinterop.annotations.JsPackage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /**
  *
  */
-final class PromiseImpl<V> implements Promise<V> {
+final class PromiseImpl<V> implements java.util.concurrent.impl.Promise<V> {
   private V value;
   private Throwable reason;
   private boolean done;
@@ -56,6 +57,12 @@ final class PromiseImpl<V> implements Promise<V> {
     if (done) {
       runCallbacks();
     }
+  }
+
+  @Override
+  public void then(Consumer<? super Throwable> callback) {
+    assert callback != null;
+    then(() -> callback.accept(reason));
   }
 
   private void complete(V value, Throwable reason) {

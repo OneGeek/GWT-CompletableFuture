@@ -91,7 +91,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
     }
 
     CompletableFuture<Void> future = new CompletableFuture<>();
-    and(futures).then((value, reason) -> {
+    and(futures).then((reason) -> {
       if (reason != null) {
         future.tryCompleteThrowable(reason);
       } else {

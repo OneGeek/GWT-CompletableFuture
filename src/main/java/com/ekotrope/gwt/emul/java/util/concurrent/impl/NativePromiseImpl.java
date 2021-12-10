@@ -16,24 +16,25 @@
 package java.util.concurrent.impl;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /**
  *
  */
-final class NativePromiseImpl<V> implements Promise<V> {
+final class NativePromiseImpl<V> implements java.util.concurrent.impl.Promise<V> {
 
-  final JsPromise jsPromise;
-  private JsPromise.Resolver resolver;
-  private JsPromise.Rejector rejector;
+  final java.util.concurrent.impl.JsPromise jsPromise;
+  private java.util.concurrent.impl.JsPromise.Resolver resolver;
+  private java.util.concurrent.impl.JsPromise.Rejector rejector;
 
   NativePromiseImpl() {
-    jsPromise = new JsPromise((resolve, reject) -> {
+    jsPromise = new java.util.concurrent.impl.JsPromise((resolve, reject) -> {
       resolver = resolve;
       rejector = reject;
     });
   }
 
-  NativePromiseImpl(JsPromise promise) {
+  NativePromiseImpl(java.util.concurrent.impl.JsPromise promise) {
     assert promise != null;
     this.jsPromise = promise;
   }
@@ -61,7 +62,14 @@ final class NativePromiseImpl<V> implements Promise<V> {
   @Override
   public void then(Runnable callback) {
     assert callback != null;
-    JsPromise.OnSettledCallback func = value -> callback.run();
+    java.util.concurrent.impl.JsPromise.OnSettledCallback func = value -> callback.run();
     jsPromise.then(func, func);
+  }
+
+  public void then(final Consumer<? super Throwable> callback) {
+    assert callback != null;
+    jsPromise.then(
+            value -> callback.accept(null),
+            reason -> callback.accept((Throwable) reason));
   }
 }

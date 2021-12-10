@@ -16,6 +16,7 @@
 package java.util.concurrent.impl;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /**
  *
@@ -63,5 +64,12 @@ final class NativePromiseImpl<V> implements Promise<V> {
     assert callback != null;
     JsPromise.OnSettledCallback func = value -> callback.run();
     jsPromise.then(func, func);
+  }
+
+  public void then(final Consumer<? super Throwable> callback) {
+    assert callback != null;
+    jsPromise.then(
+            value -> callback.accept(null),
+            reason -> callback.accept((Throwable) reason));
   }
 }

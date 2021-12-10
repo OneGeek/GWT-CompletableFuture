@@ -16,6 +16,7 @@
 package java.util.concurrent.impl;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /**
  *
@@ -29,4 +30,6 @@ public interface Promise<V> {
   void then(BiConsumer<? super V, ? super Throwable> callback);
 
   void then(Runnable callback);
+
+  void then(Consumer<? super Throwable> callback);
 }

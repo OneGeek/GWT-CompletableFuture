@@ -27,7 +27,7 @@ import java.util.function.Consumer;
 /**
  *
  */
-final class PromiseImpl<V> implements java.util.concurrent.impl.Promise<V> {
+final class PromiseImpl<V> implements Promise<V> {
   private V value;
   private Throwable reason;
   private boolean done;
